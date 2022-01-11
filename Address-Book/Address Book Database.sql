@@ -16,55 +16,53 @@ CREATE TABLE addressBook (
         email varchar(20) NOT NULL UNIQUE
 );
 desc addressBook;
-
 -- UC3--
-INSERT INTO addressbook VALUES
-(1,'Julekha','Mulani','Kothrud','Pune','Maharashtra','424112','1234567890', 'jul.m@gmail.com'),
-(2,'Rohini','Patil','Deccan','Pune','Maharashtra','420166','9191919291', 'rohini.p@gmail.com'),
-(3,'Divya','K','Andhra','Andhra Pradesh','AP','487879','4567890125', 'divya.k@yahoo.com'),
-(4,'Neeta','M','Madhya Pradesh','Gwalior','MP','43342','6577567890', 'neeta.m@gmail.com');
+INSERT INTO addressBook VALUES
+(1,'vindya','R','Andhra Pradesh','gudivada','AP','363463','564758799', 'vindya.r@gmail.com'),
+(2,'sita','M','Deccan','Pune','Maharashtra','377459','1787632734', 'sita.m@gmail.com'),
+(3,'Divya','K','Andhra Pradesh','kadapa ','AP','50003','363475656', 'divya.k@yahoo.com'),
+(4,'teja','j','teleangana','Hyderbad','TS','516003','4657654754', 'teja.j@gmail.com');
 
-SELECT * FROM addressbook;
-
+SELECT * FROM addressBook;
 -- UC4--
-UPDATE addressbook SET firstname = 'Julekhaaa'
-WHERE firstname = 'Julekha'; 
+UPDATE addressBook SET firstname = 'vindya'
+WHERE firstname = 'vindyaaa'; 
 
-SELECT * from addressbook where firstname = 'Julekhaaa';
-SELECT firstname from addressbook where firstname = 'Julekhaaa';
+SELECT * from addressBook where firstname = 'vindya';
+SELECT firstname from addressBook where firstname = 'vindya';
 
 -- UC5---
-DELETE from addressbook WHERE firstname = 'Julekhaaa';
-SELECT * FROM addressbook WHERE firstname = 'Julekhaaa';
+DELETE from addressBook WHERE firstname = 'vindya';
+SELECT * FROM addressBook WHERE firstname = 'vindya';
 
 -- UC6--
-SELECT * from addressbook where city = 'Pune' OR state = 'MP';
+SELECT * from addressBook where city = 'gudivada' OR state = 'Ap';
 
 -- UC7---
-SELECT  city, state, COUNT(*) from addressbook where city = 'Pune' AND state = 'Maharashtra';
+SELECT  city, state, COUNT(*) from addressBook where city = 'gudivada' AND state = 'Andhra Pradesh';
 
 -- UC8 ---
-SELECT * FROM addressbook WHERE state = 'Maharashtra' ORDER BY firstname ASC;
-SELECT * FROM addressbook WHERE state = 'Maharashtra' ORDER BY firstname DESC;
+SELECT * FROM addressBook WHERE state = 'Andhra Pradesh' ORDER BY firstname ASC;
+SELECT * FROM addressBook WHERE state = 'Andhra Pradesh' ORDER BY firstname DESC;
 
 -- UC9 ---
-ALTER  TABLE addressbook add ab_name varchar(20);
-alter table addressbook add ab_type char(20);
+ALTER  TABLE addressBook add ab_name varchar(20);
+alter table addressBook add ab_type char(20);
 
-update addressbook set ab_name = 'AddressBook1' where id = 2;
-update addressbook set ab_name = 'AddressBook2' where id = 1;
-update addressbook set ab_name = 'AddressBook3' where id IN (3,4);
+update addressBook set ab_name = 'AddressBook1' where id = 2;
+update addressBook set ab_name = 'AddressBook2' where id = 1;
+update addressBook set ab_name = 'AddressBook3' where id IN (3,4);
 
-update addressbook set ab_type = 'family' where id = 1;
-update addressbook set ab_type = 'friends' where id = 2;
-update addressbook set ab_type = 'profession' where id IN(3,4);
+update addressBook set ab_type = 'family' where id = 1;
+update addressBook set ab_type = 'friends' where id = 2;
+update addressBook set ab_type = 'profession' where id IN(3,4);
 
 -- UC10---  
-SELECT ab_type, COUNT(*) FROM addressbook GROUP BY ab_type;
+SELECT ab_type, COUNT(*) FROM addressBook GROUP BY ab_type;
 
 -- UC11---
-insert into addressbook(firstname,lastname,address,city,state,zip,phonenumber,email,ab_name,ab_type)
- values('Julekhaaa', 'Mulani', 'Kothrud', 'Pune', 'Maharashtra','424112', '1234567890',	'jul.m1@gmail.com',	'AddressBook2',	'friends');
+insert into addressBook(firstname,lastname,address,city,state,zip,phonenumber,email,ab_name,ab_type)
+ values('vindya', 'Rudhrakshala', 'gudivada', 'Andhra', 'Andhra Pradesh','363463', '564758799',	'vindya.r@gmail.com',	'AddressBook2',	'friends');
 
 -- UC12---
 CREATE TABLE addressbooks (
@@ -80,60 +78,59 @@ CREATE TABLE addressbooks (
 );
 desc addressbooks;
 
-create table addressbooks_name(
+create table addressBooks_name(
   id int not null auto_increment primary key,
   name varchar (20) not null,
   ab_id int ,
-  foreign key (ab_id)references addressbooks(id)  
+  foreign key (ab_id)references addressBooks(id)  
 );
-desc addressbooks_name;
+desc addressBooks_name;
 
-create table addressbooks_type(
+create table addressBooks_type(
 id int not null primary key,
 type varchar (20)
 );
-desc addressbooks_type;
+desc addressBooks_type;
 
-create table addressbooks_abtype(
+create table addressBooks_abtype(
   a_id int not null,
   t_id int not null,
-  foreign key(a_id) references addressbooks(id),
-  foreign key(t_id) references addressbooks_type(id),
+  foreign key(a_id) references addressBooks(id),
+  foreign key(t_id) references addressBooks_type(id),
   primary key(a_id,t_id)
 );
-
-INSERT INTO addressbooks VALUES
-(1,'Divya','K','Andhra','Andhra Pradesh','AP','487879','4567890125', 'divya.k@yahoo.com'),
-(2,'Neeta','M','Madhya Pradesh','Satna','MP','43342','27834654756', 'neeta.m@gmail.com')
-(3,'vindya','K','Andhra','Andhra Pradesh','AP','487879','4567890125', 'vindya.k@gmail.com'),
-(4,'sony','M','Madhya Pradesh','Satna','MP','43342','27834654756', 'sony.m@gmail.com');
+INSERT INTO addressBooks VALUES
+(1,'vindya','R','Andhra Pradesh','gudivada','AP','363463','564758799', 'vindya.r@gmail.com'),
+(2,'sita','M','Deccan','Pune','Maharashtra','377459','1787632734', 'sita.m@gmail.com'),
+(3,'Divya','K','Andhra Pradesh','kadapa ','AP','50003','363475656', 'divya.k@yahoo.com'),
+(4,'teja','j','teleangana','Hyderbad','TS','516003','4657654754', 'teja.j@gmail.com');
  
-insert into addressbooks_name values (1,'AdddressBook1', 2); 
+insert into addressBooks_name values (1,'AdddressBook1', 2); 
 
-insert into addressbooks_type
+insert into addressBooks_type
 values(1,'family');
-insert into addressbooks_type
+insert into addressBooks_type
 values(2,'friends');
-insert into addressbooks_type
+insert into addressBooks_type
 values(3,'profession');
 
-insert into addressbooks_abtype(a_id,t_id)values(1,1);
+insert into addressBooks_abtype(a_id,t_id)values(1,1);
 
-select * from addressbooks;
-select * from addressbooks_name;
-select * from addressbooks_type;
-select * from addressbooks_abtype;
+select * from addressBooks;
+select * from addressBooks_name;
+select * from addressBooks_type;
+select * from addressBooks_abtype;
 
-SELECT * from addressbooks inner join addressbooks_name where city = 'Pune' OR state = 'MP';
+SELECT * from addressBooks inner join addressBooks_name where city = 'gudivada' OR state = 'AP';
 
-SELECT  city, state, COUNT(*) from addressbooks  where city = 'Pune' AND state = 'Maharashtra';
+SELECT  city, state, COUNT(*) from addressBooks  where city = 'gudivada' AND state = 'Andhra pradesh';
 
-SELECT * FROM addressbooks WHERE state = 'Maharashtra' ORDER BY firstname ASC;
+SELECT * FROM addressBooks WHERE state = 'Andhra pradesh' ORDER BY firstname ASC;
 
-SELECT type, count(*) FROM addressbooks join addressbooks_type group by type;
+SELECT type, count(*) FROM addressBooks join addressBooks_type group by type;
 
 -- ability to add person friends and family--
-select * from addressbooks inner join addressbooks_type ON addressbooks.id = 1 and addressbooks_type.id IN(1,2);
+select * from addressBooks inner join addressBooks_type ON addressBooks.id = 1 and addressBooks_type.id IN(1,2);
 
 --- all record of id 1 can fetch---
-select * from addressbooks inner join addressbooks_name inner join addressbooks_type ON addressbooks.id = 1 and addressbooks_name.id= '1' and addressbooks_type.id IN (1);
+select * from addressBooks inner join addressBooks_name inner join addressBooks_type ON addressBooks.id = 1 and addressBooks_name.id= '1' and addressBooks_type.id IN (1);
